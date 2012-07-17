@@ -3,6 +3,7 @@
     ViewBag.Title = "Hello World";
 }
 <var name="AccountNumber" />
+
 <form id="main">
 <block>
         <prompt bargein="false">
@@ -22,7 +23,7 @@
     </field>
     <filled>
         <prompt>
-            <assign name="application.AccountNumber" expr="account_number" />" />
+            <assign name="application.AccountNumber" expr="account_number" />
             You have entered <value expr="account_number" />.
         </prompt>
         <goto next="#pin" />
@@ -36,10 +37,9 @@
             Use your telephone keypad to enter your pin, followed by the pound key.
         </prompt>
     </field>
-<filled>
+    <filled>
         <prompt>
             Welcome to account <value expr="application.AccountNumber" />.
         </prompt>
-
     </filled>
 </form>
