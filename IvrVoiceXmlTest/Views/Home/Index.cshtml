@@ -13,7 +13,7 @@
 </form>
 <form id="account">
 <field name="response">
-        <prompt>
+        <prompt bargein="dtmf_only">
              Please enter your account number, followed by the pound key
         </prompt>
         
@@ -31,12 +31,13 @@
                     <item> 7 </item>
                     <item> 8 </item>
                     <item> 9 </item>
+                    <item> # </item>
                 </one-of>
             </rule>
 
             <rule id="accountnumber">
                 <tag>out=""</tag>
-                <item repeat="20">
+                <item repeat="21">
                     <ruleref uri="#digit"/>
                     <tag>out += rules.latest( );</tag>
                 </item>
