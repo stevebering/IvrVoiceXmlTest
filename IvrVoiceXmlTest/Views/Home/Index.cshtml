@@ -12,52 +12,24 @@
     </block>
 </form>
 <form id="account">
-<field name="response">
+    <field name="account_number">
+        <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
-             Please enter your account number, followed by the pound key
+            Use your telephone keypad to enter your account number, followed by the # key.
         </prompt>
-        
-        <grammar mode="dtmf" version="1.0" root="accountnumber"
-                 tag-format="semantics/1.0">
-            <rule id="digit">
-                <one-of>
-                    <item> 0 </item>
-                    <item> 1 </item>
-                    <item> 2 </item>
-                    <item> 3 </item>
-                    <item> 4 </item>
-                    <item> 5 </item>
-                    <item> 6 </item>
-                    <item> 7 </item>
-                    <item> 8 </item>
-                    <item> 9 </item>
-                    <item> # </item>
-                </one-of>
-            </rule>
+    </field>
+    
+    <field name="pin">
+        <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
+        <prompt bargein="dtmf_only">
+            Use your telephone keypad to enter your pin, followed by the # key.
+        </prompt>
+    </field>
+    
+    <filled>
+        <prompt>
+            Welcome to account <value expr="account_number" />.
+        </prompt>
 
-            <rule id="accountnumber">
-                <tag>out=""</tag>
-                <item repeat="21">
-                    <ruleref uri="#digit"/>
-                    <tag>out += rules.latest( );</tag>
-                </item>
-            </rule>
-            
-            <filled>
-             <script><![CDATA[
-                <!-- put spaces between digits so output can be
-                     spoken one digit at a time -->
-                 response= response.replace(/(.)/g, "$1 ");
-             ]]></script>
-             <prompt> thank you </prompt>
-             <prompt>you pressed <value expr="response"/></prompt>
-          </filled>
-
-          <noinput> </noinput>
-
-          <nomatch> </nomatch>
-        
-        </grammar>
-
-</field>
+    </filled>
 </form>
