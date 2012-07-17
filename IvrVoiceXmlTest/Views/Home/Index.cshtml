@@ -12,27 +12,23 @@
         <goto next="#account" />
     </block>
 </form>
+
 <form id="account">
-<field name="account_number">
+    <field name="account_number">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
             Use your telephone keypad to enter your account number, followed by the pound key.
         </prompt>
     </field>
-<field name="pin">
-        <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
-        <prompt bargein="dtmf_only">
-            Use your telephone keypad to enter your pin, followed by the pound key.
-        </prompt>
-    </field>
-<filled>
+    <filled>
         <prompt>
-            <assign name="AccountNumber" expr="account_number" />" />
+            <assign name="application.AccountNumber" expr="account_number" />" />
             You have entered <value expr="account_number" />.
         </prompt>
         <goto next="#pin" />
     </filled>
 </form>
+
 <form id="pin">
 <field name="pin_number">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
