@@ -4,8 +4,56 @@
 }
 <form>
 <block>
-     <prompt bargein="false">
-        Hello World. This is my first telephone application.
-     </prompt>
+    <prompt bargein="false">
+         Hello World. This is my first telephone application.
+    </prompt>
+    
+    <field name="response">
+        <prompt>
+             Please enter your account number, followed by the pound key
+        </prompt>
+        
+        <grammar mode="dtmf" version="1.0" root="accountnumber"
+                 tag-format="semantics/1.0">
+            <rule id="digit">
+                <one-of>
+                    <item> 0 </item>
+                    <item> 1 </item>
+                    <item> 2 </item>
+                    <item> 3 </item>
+                    <item> 4 </item>
+                    <item> 5 </item>
+                    <item> 6 </item>
+                    <item> 7 </item>
+                    <item> 8 </item>
+                    <item> 9 </item>
+                </one-of>
+            </rule>
+
+            <rule id="accountnumber">
+                <tag>out="#"</tag>
+                <item repeat="20">
+                    <ruleref uri="#digit"/>
+                    <tag>out += rules.latest( );</tag>
+                </item>
+            </rule>
+            
+            <filled>
+             <script><![CDATA[
+                <!-- put spaces between digits so output can be
+                     spoken one digit at a time -->
+                 response= response.replace(/(.)/g, "$1 ");
+             ]]></script>
+             <prompt> thank you </prompt>
+             <prompt>you pressed <value expr="response"/></prompt>
+          </filled>
+
+          <noinput> </noinput>
+
+          <nomatch> </nomatch>
+        
+        </grammar>
+
+    </field>
 </block>
 </form>
