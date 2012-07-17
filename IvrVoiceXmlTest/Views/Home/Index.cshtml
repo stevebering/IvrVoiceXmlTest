@@ -2,33 +2,47 @@
 @{
     ViewBag.Title = "Hello World";
 }
+<var name="AccountNumber" />
 <form id="main">
 <block>
         <prompt bargein="false">
-            Hello World. This is my first telephone application.
+            Hello, welcome to Meracord Contractual Payment Services.
         </prompt>
         <!-- Move to the account sign-in form -->
         <goto next="#account" />
     </block>
 </form>
 <form id="account">
-    <field name="account_number">
+<field name="account_number">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
-            Use your telephone keypad to enter your account number, followed by the # key.
+            Use your telephone keypad to enter your account number, followed by the pound key.
         </prompt>
     </field>
-    
-    <field name="pin">
+<field name="pin">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
-            Use your telephone keypad to enter your pin, followed by the # key.
+            Use your telephone keypad to enter your pin, followed by the pound key.
         </prompt>
     </field>
-    
-    <filled>
+<filled>
         <prompt>
-            Welcome to account <value expr="account_number" />.
+            <assign name="AccountNumber" expr=account_number />
+            You have entered <value expr="account_number" />.
+        </prompt>
+        <goto next="#pin" />
+    </filled>
+</form>
+<form id="pin">
+<field name="pin_number">
+        <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
+        <prompt bargein="dtmf_only">
+            Use your telephone keypad to enter your pin, followed by the pound key.
+        </prompt>
+    </field>
+<filled>
+        <prompt>
+            Welcome to account <value expr="application.AccountNumber" />.
         </prompt>
 
     </filled>
