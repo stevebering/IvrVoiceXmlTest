@@ -17,7 +17,7 @@
 </form>
 
 <form id="account">
-    <field name="account_number">
+    <field name="account_number" type="digits">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
             Use your telephone keypad to enter your account number, followed by the pound key.
@@ -42,7 +42,7 @@
     </field>
     <filled>
         <prompt>
-            Welcome to account <value expr="g_accountnumber" />.
+            Welcome to account <value expr="g_accountnumber" />, also known as <value expr="account_number" />.
         </prompt>
     </filled>
 </form>
