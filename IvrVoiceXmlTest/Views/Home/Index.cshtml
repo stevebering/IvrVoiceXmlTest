@@ -3,10 +3,22 @@
     ViewBag.Title = "Hello World";
 }
 <var name="g_accountnumber" />
+<script>
+    <![CDATA[
+    function sayasDigits(number) {
+        var digitNumber = number.charAt(0);
+        for (var i = 1; i < number.length; i++) {
+            digitNumber += ' ' + number.charAt(i);
+        }
+        return digitNumber;
+    }
+  ]]>
+</script>
+
 <form id="main">
 <block>
         <prompt bargein="false">
-            Hello, welcome to Meracord Contractual Payment Services.
+            Hello, welcome to Mareacord Contractual Payment Services.
         </prompt>
         <!-- Move to the account sign-in form -->
         <goto next="#account" />
@@ -19,9 +31,9 @@
             Use your telephone keypad to enter your account number, followed by the pound key.
         </prompt>
     </field>
-<filled>
+    <filled>
         <prompt>
-            You have entered <value expr="account_number" />. 
+            You have entered <value expr="sayasDigits(account_number)" />. 
         </prompt>
         <assign name="g_accountnumber" expr="account_number" />
         <goto next="#pin" />
@@ -36,7 +48,7 @@
     </field>
 <filled>
         <prompt>
-            Welcome to account <value expr="g_accountnumber" />.
+            Welcome to account <value expr="sayasDigits(g_accountnumber)" />.
         </prompt>
     </filled>
 </form>
