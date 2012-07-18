@@ -2,10 +2,7 @@
 @{
     ViewBag.Title = "Hello World";
 }
-
 <var name="g_accountnumber" />
-
-
 <form id="main">
 <block>
         <prompt bargein="false">
@@ -15,24 +12,21 @@
         <goto next="#account" />
     </block>
 </form>
-
 <form id="account">
-    <field name="account_number" type="digits">
+<field name="account_number" type="digits">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
         <prompt bargein="dtmf_only">
             Use your telephone keypad to enter your account number, followed by the pound key.
         </prompt>
     </field>
-    <filled>
+<filled>
         <prompt>
-            <assign name="g_accountnumber" expr="account_number" />
             You have entered <value expr="account_number" />. 
-            This is saved as value <value expr="g_accountnumber" />.
         </prompt>
+        <assign name="g_accountnumber" expr="account_number" />
         <goto next="#pin" />
     </filled>
 </form>
-
 <form id="pin">
 <field name="pin_number">
         <grammar mode="dtmf" src="builtin:dtmf/digits" version="1.0"/>
@@ -40,9 +34,9 @@
             Use your telephone keypad to enter your pin, followed by the pound key.
         </prompt>
     </field>
-    <filled>
+<filled>
         <prompt>
-            Welcome to account <value expr="g_accountnumber" />, also known as <value expr="account_number" />.
+            Welcome to account <value expr="g_accountnumber" />.
         </prompt>
     </filled>
 </form>
