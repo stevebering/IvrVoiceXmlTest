@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Hello World";
 }
-<var name="AccountNumber" />
+
+<var name="g_accountnumber" />
+
 
 <form id="main">
 <block>
@@ -23,9 +25,9 @@
     </field>
     <filled>
         <prompt>
-            <assign name="application.AccountNumber" expr="account_number" />
+            <assign name="g_accountnumber" expr="account_number" />
             You have entered <value expr="account_number" />. 
-            This is saved as value <value expr="application.AccountNumber" />.
+            This is saved as value <value expr="g_accountnumber" />.
         </prompt>
         <goto next="#pin" />
     </filled>
@@ -40,7 +42,7 @@
     </field>
     <filled>
         <prompt>
-            Welcome to account <value expr="application.AccountNumber" />.
+            Welcome to account <value expr="g_accountnumber" />.
         </prompt>
     </filled>
 </form>
